@@ -4,17 +4,22 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function Register() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const userType = searchParams.get('type') || 'user';
+  
   const [formData, setFormData] = useState({
     fullName: '',
-    phone: ''
+    phone: '',
+    certificationNumber: ''
   });
   const [errors, setErrors] = useState({
     fullName: '',
-    phone: ''
+    phone: '',
+    certificationNumber: ''
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +34,8 @@ export default function Register() {
   const validateForm = () => {
     const newErrors = {
       fullName: '',
-      phone: ''
+      phone: '',
+      certificationNumber: ''
     };
     let isValid = true;
 
@@ -46,6 +52,11 @@ export default function Register() {
       isValid = false;
     }
 
+    if (userType === 'agent' && !formData.certificationNumber.trim()) {
+      newErrors.certificationNumber = 'Certification number is required';
+      isValid = false;
+    }
+
     setErrors(newErrors);
     return isValid;
   };
@@ -54,8 +65,8 @@ export default function Register() {
     e.preventDefault();
     if (validateForm()) {
       // Store user data (in a real app, this would go to a backend)
-      localStorage.setItem('user', JSON.stringify(formData));
-      router.push('/dashboard');
+      localStorage.setItem('user', JSON.stringify({ ...formData, userType }));
+      router.push('/location');
     }
   };
 
@@ -66,9 +77,9 @@ export default function Register() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#008FAB]/10 to-[#008FAB]/5 flex items-center justify-center p-4">
       <div className="max-w-md w-full">
-        <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
+        <div className="bg-white rounded-2xl shadow-2xl p-4 md:p-12">
           {/* Header */}
-          <div className="text-center mb-8">
+          <div className="text-center">
             <div className="mb-4 flex justify-center">
               <div className="relative w-20 h-20">
                 <Image
@@ -89,7 +100,7 @@ export default function Register() {
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4 mt-3">
             <Input
               label="Full Name"
               name="fullName"
@@ -111,11 +122,23 @@ export default function Register() {
               required
             />
 
+            {userType === 'agent' && (
+              <Input
+                label="Certification Number"
+                name="certificationNumber"
+                value={formData.certificationNumber}
+                onChange={handleChange}
+                placeholder="Enter your certification number"
+                error={errors.certificationNumber}
+                required
+              />
+            )}
+
             <Button
               type="submit"
               fullWidth
               size="lg"
-              className="mt-8"
+              className="mt-3"
             >
               Register
             </Button>
@@ -131,7 +154,7 @@ export default function Register() {
         </div>
 
         {/* Footer */}
-        <p className="text-center text-gray-500 text-xs mt-6">
+        <p className="text-center text-gray-500 text-xs mt-2">
           Already have an account?{' '}
           <button
             onClick={() => router.push('/login')}

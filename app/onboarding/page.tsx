@@ -3,14 +3,23 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Button from '@/components/Button';
+import UserChoiceCard from '@/components/UserChoiceCard';
 import { useRouter } from 'next/navigation';
 
 export default function Onboarding() {
   const router = useRouter();
-  const [showLogin, setShowLogin] = useState(false);
+  const [showChoiceCard, setShowChoiceCard] = useState(false);
 
   const handleGetStarted = () => {
-    router.push('/register');
+    setShowChoiceCard(true);
+  };
+
+  const handleLookingForPlace = () => {
+    router.push('/register?type=user');
+  };
+
+  const handleAgent = () => {
+    router.push('/register?type=agent');
   };
 
   const handleLogin = () => {
@@ -18,7 +27,7 @@ export default function Onboarding() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col relative">
       {/* Teal Header Section */}
       <div className="bg-[#008FAB] px-6 py-8 flex-shrink-0">
         <div className="flex items-center gap-4 mb-4">
@@ -87,6 +96,14 @@ export default function Onboarding() {
           By continuing, you agree to our Terms of Service and Privacy Policy
         </p>
       </div>
+
+      {/* User Choice Card */}
+      {showChoiceCard && (
+        <UserChoiceCard
+          onLookingForPlace={handleLookingForPlace}
+          onAgent={handleAgent}
+        />
+      )}
     </div>
   );
 }
