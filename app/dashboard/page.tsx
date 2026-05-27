@@ -221,7 +221,7 @@ export default function Dashboard() {
             placeholder="Search properties..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full px-4 py-3 pl-12 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#008FAB] focus:border-transparent"
+            className="w-full px-4 py-3 pl-12 text-slate-500 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#008FAB] focus:border-transparent"
           />
           <svg
             className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
@@ -269,7 +269,7 @@ export default function Dashboard() {
               className="flex gap-4 p-4 hover:bg-gray-50 transition-colors"
             >
               {/* Property Image */}
-              <div className="relative w-24 h-24 flex-shrink-0">
+              <div className="relative w-18 h-18 flex-shrink-0">
                 <Image
                   src={property.image}
                   alt={property.name}
@@ -280,25 +280,10 @@ export default function Dashboard() {
 
               {/* Property Details */}
               <div className="flex-1 flex flex-col justify-center">
-                <h3 className="truncate font-semibold text-gray-800 text-xl mb-1">{property.name}</h3>
+                <p className="truncate font-semibold text-[#111B21] text-[15px] mb-1">{property.name}</p>
                 <p className="text-gray-500 text-sm mb-2">{property.location}</p>
-                <p className="text-[#008FAB] font-bold text-lg">{property.price}</p>
+                <p className="text-[#008FAB] font-bold">{property.price}</p>
               </div>
-
-              {/* Chevron right */}
-              <svg
-                className="w-6 h-6 text-gray-400 flex-shrink-0 self-center"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
             </Card>
           ))}
         </div>
