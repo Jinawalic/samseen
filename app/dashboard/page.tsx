@@ -191,7 +191,7 @@ export default function Dashboard() {
       {/* Main Content */}
       <div className="flex-1 md:ml-64">
         {/* Mobile Header */}
-        <div className="md:hidden bg-[#008FAB] text-white sticky top-0 z-10">
+        <div className="md:hidden bg-[#008FAB] text-white top-0 z-10">
           <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="relative w-10 h-10">
@@ -214,7 +214,7 @@ export default function Dashboard() {
         </div>
 
       {/* Search Input */}
-      <div className="max-w-4xl mx-auto px-4 py-4">
+      <div className="max-w-4xl mx-auto px-2 py-4">
         <div className="relative">
           <input
             type="text"
@@ -240,8 +240,8 @@ export default function Dashboard() {
       </div>
 
       {/* Properties Section */}
-      <div className="max-w-4xl mx-auto px-4 py-2">
-        <h2 className="text-2xl font-bold text-gray-800 mb-3">Properties Near You</h2>
+      <div className="max-w-4xl mx-auto px-1 py-2">
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-3">Properties Near You</h2>
         
         {/* Property Type Tabs */}
         <div className="flex gap-2 mb-4 overflow-x-auto pb-2">
@@ -293,10 +293,11 @@ export default function Dashboard() {
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 md:hidden">
         <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-around">
           <button className="flex flex-col items-center gap-1 text-[#008FAB]">
-            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="10" />
+            <svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
             </svg>
-            <span className="text-xs">Status</span>
+            <span className="text-xs">Home</span>
           </button>
           <button className="flex flex-col items-center gap-1 text-gray-500">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
