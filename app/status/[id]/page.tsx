@@ -120,7 +120,8 @@ export default function StatusViewer() {
   const [currentPostIndex, setCurrentPostIndex] = useState(0);
   const [status, setStatus] = useState<typeof mockStatuses[0] | null>(null);
   const [showModal, setShowModal] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     const foundStatus = mockStatuses.find(s => s.id === statusId);
@@ -128,6 +129,37 @@ export default function StatusViewer() {
       setStatus(foundStatus);
     }
   }, [statusId]);
+
+  // Auto-advance progress like WhatsApp status
+  useEffect(() => {
+    if (!status || isPaused) return;
+
+    const duration = 5000; // 5 seconds per image
+    const interval = 50; // Update every 50ms
+    const increment = (interval / duration) * 100;
+
+    const timer = setInterval(() => {
+      setProgress(prev => {
+        if (prev >= 100) {
+          if (status && currentPostIndex < status.posts.length - 1) {
+            setCurrentPostIndex(prev => prev + 1);
+            return 0;
+          } else {
+            router.push('/dashboard');
+            return prev;
+          }
+        }
+        return prev + increment;
+      });
+    }, interval);
+
+    return () => clearInterval(timer);
+  }, [currentPostIndex, status, router, isPaused]);
+
+  // Reset progress when changing images
+  useEffect(() => {
+    setProgress(0);
+  }, [currentPostIndex]);
 
   const handleNext = () => {
     if (status && currentPostIndex < status.posts.length - 1) {
@@ -168,35 +200,39 @@ export default function StatusViewer() {
   const currentPost = status.posts[currentPostIndex];
 
   return (
-    <div className="min-h-screen bg-black flex flex-col">
+    <div className="h-screen w-screen bg-black flex flex-col overflow-hidden">
 
       {/* Status Viewer */}
-      <div className="flex-1 relative flex items-center justify-center bg-black" style={{ height: 'calc(100vh - 80px)' }}>
+      <div
+        className="flex-1 relative flex items-center justify-center bg-black h-full w-full"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={() => setIsPaused(true)}
+        onTouchEnd={() => setIsPaused(false)}
+      >
         {/* Progress indicators */}
         <div className="absolute top-4 left-4 right-4 flex gap-1 z-10">
           {status.posts.map((_, index) => (
             <div
               key={index}
-              className={`flex-1 h-1 rounded-full transition-all duration-300 ${
-                index < currentPostIndex ? 'bg-white' : 'bg-white/30'
-              }`}
-            />
+              className={`flex-1 h-1 rounded-full bg-white/30 overflow-hidden`}
+            >
+              <div
+                className="h-full bg-white transition-all duration-50 ease-linear"
+                style={{
+                  width: index === currentPostIndex ? `${progress}%` : index < currentPostIndex ? '100%' : '0%'
+                }}
+              />
+            </div>
           ))}
         </div>
 
         {/* Current post image */}
         <div className="relative w-full h-full">
-          {!imageLoaded && (
-            <div className="absolute inset-0 flex items-center justify-center bg-gray-900 z-0">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
-            </div>
-          )}
           <img
             src={currentPost.image}
             alt={currentPost.caption}
             className="w-full h-full object-cover"
-            onLoad={() => setImageLoaded(true)}
-            style={{ display: imageLoaded ? 'block' : 'none' }}
           />
         </div>
 

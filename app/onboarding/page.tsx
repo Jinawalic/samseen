@@ -75,7 +75,7 @@ export default function Onboarding() {
         <Button
           onClick={handleGetStarted}
           fullWidth
-          size="lg"
+          size="md"
           className="mb-4"
         >
           Get Started
@@ -99,10 +99,15 @@ export default function Onboarding() {
 
       {/* User Choice Card */}
       {showChoiceCard && (
-        <UserChoiceCard
-          onLookingForPlace={handleLookingForPlace}
-          onAgent={handleAgent}
-        />
+        <>
+          {/* Blur Overlay */}
+          <div className="absolute inset-0 bg-black/30 backdrop-blur-sm z-40" />
+          <UserChoiceCard
+            onLookingForPlace={handleLookingForPlace}
+            onAgent={handleAgent}
+            className="z-50"
+          />
+        </>
       )}
     </div>
   );

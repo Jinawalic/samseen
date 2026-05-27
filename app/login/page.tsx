@@ -66,7 +66,7 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#008FAB]/10 to-[#008FAB]/5 flex items-center justify-center p-4">
       <div className="max-w-md w-full">
-        <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
+        <div className="bg-white rounded-2xl shadow-2xl p-4 md:p-12">
           {/* Header */}
           <div className="text-center mb-8">
             <div className="mb-4 flex justify-center">
@@ -89,7 +89,7 @@ export default function Login() {
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <Input
               label="Phone Number"
               name="phone"
@@ -104,8 +104,8 @@ export default function Login() {
             <Button
               type="submit"
               fullWidth
-              size="lg"
-              className="mt-8"
+              size="md"
+              className="mt-4"
             >
               Login
             </Button>

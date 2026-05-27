@@ -144,7 +144,7 @@ function RegisterContent() {
             <Button
               type="submit"
               fullWidth
-              size="lg"
+              size="md"
               className="mt-3"
             >
               Register

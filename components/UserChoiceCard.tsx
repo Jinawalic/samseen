@@ -12,7 +12,7 @@ export default function UserChoiceCard({ onLookingForPlace, onAgent, className =
   return (
     <div className={`absolute bottom-0 left-0 w-full bg-[#f5f5f5] rounded-t-[38px] px-5 pt-8 pb-6 shadow-2xl ${className}`}>
       {/* Heading */}
-      <h2 className="text-center text-[20px] font-medium text-gray-500 mb-6">
+      <h2 className="text-center text-[18px] font-medium text-gray-500 mb-6">
         How do you want to use Samseen?
       </h2>
 
@@ -23,13 +23,13 @@ export default function UserChoiceCard({ onLookingForPlace, onAgent, className =
       >
         <div className="flex items-center gap-2">
           {/* Icon */}
-          <div className="w-10 h-10 rounded-xl bg-[#edf5f0] flex items-center justify-center">
+          <div className="w-8 h-8 rounded-xl flex items-center justify-center">
             <Search className="w-8 h-8 text-[#0b7a4b]" strokeWidth={2.2} />
           </div>
 
           {/* Text */}
           <div>
-            <h3 className="text-[20px] font-bold text-gray-900 leading-tight">
+            <h3 className="text-[16px] font-bold text-gray-900 leading-tight">
               I'm looking for a place
             </h3>
 
@@ -50,7 +50,7 @@ export default function UserChoiceCard({ onLookingForPlace, onAgent, className =
       >
         <div className="flex items-center gap-2">
           {/* Icon */}
-          <div className="w-10 h-10 rounded-xl bg-[#edf5f0] flex items-center justify-center">
+          <div className="w-8 h-8 rounded-xl flex items-center justify-center">
             <Building2
               className="w-8 h-8 text-[#0b7a4b]"
               strokeWidth={2.2}
@@ -59,7 +59,7 @@ export default function UserChoiceCard({ onLookingForPlace, onAgent, className =
 
           {/* Text */}
           <div>
-            <h3 className="text-[20px] font-bold text-gray-900 leading-tight">
+            <h3 className="text-[16px] font-bold text-gray-900 leading-tight">
               I'm an agent
             </h3>
 
