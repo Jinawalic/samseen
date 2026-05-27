@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Card from '@/components/Card';
@@ -122,6 +122,7 @@ export default function StatusViewer() {
   const [showModal, setShowModal] = useState(false);
   const [progress, setProgress] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [shouldNavigate, setShouldNavigate] = useState(false);
 
   useEffect(() => {
     const foundStatus = mockStatuses.find(s => s.id === statusId);
@@ -130,9 +131,16 @@ export default function StatusViewer() {
     }
   }, [statusId]);
 
+  // Handle navigation when shouldNavigate is true
+  useEffect(() => {
+    if (shouldNavigate) {
+      router.push('/dashboard');
+    }
+  }, [shouldNavigate, router]);
+
   // Auto-advance progress like WhatsApp status
   useEffect(() => {
-    if (!status || isPaused) return;
+    if (!status || isPaused || showModal) return;
 
     const duration = 5000; // 5 seconds per image
     const interval = 50; // Update every 50ms
@@ -145,7 +153,7 @@ export default function StatusViewer() {
             setCurrentPostIndex(prev => prev + 1);
             return 0;
           } else {
-            router.push('/dashboard');
+            setShouldNavigate(true);
             return prev;
           }
         }
@@ -154,7 +162,7 @@ export default function StatusViewer() {
     }, interval);
 
     return () => clearInterval(timer);
-  }, [currentPostIndex, status, router, isPaused]);
+  }, [currentPostIndex, status, isPaused, showModal]);
 
   // Reset progress when changing images
   useEffect(() => {
@@ -197,7 +205,15 @@ export default function StatusViewer() {
     );
   }
 
-  const currentPost = status.posts[currentPostIndex];
+  const currentPost = status?.posts?.[currentPostIndex];
+
+  if (!currentPost) {
+    return (
+      <div className="h-screen w-screen bg-black flex items-center justify-center">
+        <p className="text-white">Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="h-screen w-screen bg-black flex flex-col overflow-hidden">
