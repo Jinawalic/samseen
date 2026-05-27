@@ -1,15 +1,22 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Image from 'next/image';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-export default function Register() {
+export const dynamic = 'force-dynamic';
+
+function RegisterContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const userType = searchParams.get('type') || 'user';
+  const [userType, setUserType] = useState('user');
+
+  useEffect(() => {
+    const type = searchParams.get('type') || 'user';
+    setUserType(type);
+  }, [searchParams]);
   
   const [formData, setFormData] = useState({
     fullName: '',
@@ -165,5 +172,15 @@ export default function Register() {
         </p>
       </div>
     </div>
+  );
+}
+
+export default function Register() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gradient-to-br from-[#008FAB]/10 to-[#008FAB]/5 flex items-center justify-center p-4">
+      <div className="text-gray-600">Loading...</div>
+    </div>}>
+      <RegisterContent />
+    </Suspense>
   );
 }
