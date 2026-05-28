@@ -138,7 +138,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-gray-50 ">
       {/* Desktop Sidebar */}
       <div className="hidden md:flex flex-col w-64 bg-white border-r border-gray-200 fixed h-full">
         <div className="p-6 border-b border-gray-200">
