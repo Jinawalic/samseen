@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Card from '@/components/Card';
 import { useRouter } from 'next/navigation';
+import { Bell, UserCircle } from 'lucide-react';
 
 // Mock data for properties
 const mockProperties = [
@@ -195,15 +196,8 @@ export default function Dashboard() {
         <div className="md:hidden bg-[#008FAB] text-white top-0 z-10">
           <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="relative w-10 h-10">
-                <Image
-                  src="/images/logo.png"
-                  alt="Samseen"
-                  fill
-                  className="object-contain rounded-full"
-                />
-              </div>
-              <h1 className="text-xl font-semibold">Samseen</h1>
+              <UserCircle className="w-10 h-10 text-white" />
+              <h1 className="text-xl font-semibold truncate max-w-[200px]">Titus Jinawa</h1>
             </div>
             <button
               onClick={handleLogout}
@@ -213,6 +207,15 @@ export default function Dashboard() {
             </button>
           </div>
         </div>
+
+      {/* Top Bar for Desktop */}
+      <div className="hidden md:flex justify-between items-center max-w-4xl mx-auto px-4 py-4">
+        <h2 className="text-xl font-semibold text-gray-800">Good morning, Titus.</h2>
+        <div className="flex items-center gap-4">
+          <Bell className="w-6 h-6 text-gray-600 cursor-pointer" />
+          <UserCircle className="w-8 h-8 text-gray-600 cursor-pointer" />
+        </div>
+      </div>
 
       {/* Search Input */}
       <div className="max-w-4xl mx-auto px-2 py-4">
@@ -262,15 +265,15 @@ export default function Dashboard() {
         </div>
 
         {/* Property Cards */}
-        <div className="space-y-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {filteredProperties.map((property) => (
             <Card
               key={property.id}
               onClick={() => handlePropertyClick(property.id)}
-              className="flex gap-4 p-4 hover:bg-gray-50 transition-colors"
+              className="flex flex-col p-4 hover:bg-gray-50 transition-colors"
             >
               {/* Property Image */}
-              <div className="relative w-18 h-18 flex-shrink-0">
+              <div className="relative w-full h-48 mb-3">
                 <Image
                   src={property.image}
                   alt={property.name}
@@ -280,8 +283,8 @@ export default function Dashboard() {
               </div>
 
               {/* Property Details */}
-              <div className="flex-1 flex flex-col justify-center">
-                <p className="truncate font-semibold text-[#111B21] text-[15px] mb-1">{property.name}</p>
+              <div className="flex flex-col justify-center">
+                <p className="font-semibold text-[#111B21] text-[15px] mb-1">{property.name}</p>
                 <p className="text-gray-500 text-sm mb-2">{property.location}</p>
                 <p className="text-[#008FAB] font-bold">{property.price}</p>
               </div>
