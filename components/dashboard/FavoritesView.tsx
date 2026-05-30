@@ -47,11 +47,11 @@ export const FavoritesView: React.FC<FavoritesViewProps> = ({
 
   return (
     <div className="bg-gray-50 min-h-screen pb-24 md:pb-8">
-      <div className="max-w-xl mx-auto px-4 py-4 space-y-6">
+      <div className="px-4 py-4 space-y-6">
         
         {/* Favorites Title Header */}
         <div className="flex justify-between items-center">
-          <h2 className="text-gray-900 font-extrabold text-2xl">Favourites</h2>
+          <h2 className="text-gray-900 font-bold text-[18px]">Favourites</h2>
         </div>
 
         {/* Category Tags Tabs */}

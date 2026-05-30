@@ -167,7 +167,7 @@ export const PropertyDetail: React.FC<PropertyDetailProps> = ({
               <div className="flex justify-between items-start">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <h3 className="text-gray-900 font-extrabold text-xl md:text-2xl leading-snug">{property.title}</h3>
+                    <h3 className="text-gray-900 font-bold text-xl md:text-2xl ">{property.title}</h3>
                     <div className="flex items-center gap-1 bg-amber-50 text-amber-600 text-xs font-bold px-2 py-0.5 rounded-lg border border-amber-200">
                       <Star className="w-3.5 h-3.5 fill-amber-500 stroke-amber-500" />
                       <span>{property.rating}</span>

@@ -29,8 +29,9 @@ export default function Onboarding() {
   return (
     <div className="min-h-screen flex flex-col relative">
       {/* Teal Header Section */}
-      <div className="bg-[#008FAB] px-6 py-8 flex-shrink-0">
-        <div className="flex items-center gap-4 mb-4">
+      <div className="bg-[#008FAB] px-6 py-8 flex-shrink-0 relative bg-[url('/images/property-bg.webp')] bg-cover bg-center">
+        <div className="absolute inset-0 bg-[#008FAB] opacity-70"></div>
+        <div className="flex items-center gap-4 mb-4 relative z-10">
           <div className="relative w-12 h-12">
             <Image
               src="/images/logo.png"

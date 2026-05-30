@@ -95,11 +95,11 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
 
   return (
     <div className="bg-gray-50 min-h-screen pb-24 md:pb-8">
-      <div className="max-w-xl mx-auto px-4 py-4 space-y-6">
+      <div className="px-4 py-4 space-y-6">
         
         {/* Profile Title Header */}
         <div className="flex justify-between items-center">
-          <h2 className="text-gray-900 font-extrabold text-2xl">Profile</h2>
+          <h2 className="text-gray-900 font-bold text-[18px] text-base">Profile</h2>
         </div>
 
         {/* Profile Card */}
@@ -113,7 +113,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
             />
           </div>
           <div>
-            <h3 className="text-gray-900 font-extrabold text-lg leading-tight">{user.name}</h3>
+            <h3 className="text-gray-900 font-bold text-lg text-base">{user.name}</h3>
             <p className="text-gray-400 text-xs mt-0.5">{user.email}</p>
             <span className="inline-block bg-[#E8F5F7] text-[#008FAB] text-[10px] font-bold px-3 py-1 rounded-full mt-2.5">
               Member since 2023
