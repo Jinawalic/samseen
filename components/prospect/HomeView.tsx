@@ -5,7 +5,7 @@ import { MapPin, ChevronDown, Bell } from 'lucide-react';
 import { Property, formatPrice } from './mockData';
 import { PropertyCard } from './PropertyCard';
 import { SearchInput } from './SearchInput';
-import { DashboardButton } from './DashboardButton';
+import { DashboardButton } from '../agent/DashboardButton';
 
 interface HomeViewProps {
   homeFeaturedProperties: Property[];

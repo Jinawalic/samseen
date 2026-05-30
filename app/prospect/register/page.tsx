@@ -73,12 +73,12 @@ function RegisterContent() {
     if (validateForm()) {
       // Store user data (in a real app, this would go to a backend)
       localStorage.setItem('user', JSON.stringify({ ...formData, userType }));
-      router.push('/location');
+      router.push('/prospect/location');
     }
   };
 
   const handleBack = () => {
-    router.push('/onboarding');
+    router.push('/prospect/onboarding');
   };
 
   return (
@@ -164,7 +164,7 @@ function RegisterContent() {
         <p className="text-center text-gray-500 text-xs mt-2">
           Already have an account?{' '}
           <button
-            onClick={() => router.push('/login')}
+            onClick={() => router.push('/prospect/login')}
             className="text-[#008FAB] hover:underline font-medium"
           >
             Login

@@ -15,11 +15,11 @@ export default function AddPropertySuccess() {
   }, []);
 
   const handleViewProperty = () => {
-    router.push('/dashboard');
+    router.push('/agent/dashboard');
   };
 
   const handleAddAnother = () => {
-    router.push('/add-property');
+    router.push('/agent/add-property');
   };
 
   return (

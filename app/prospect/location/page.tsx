@@ -12,9 +12,9 @@ export default function Location() {
   const handleProceed = () => {
     const userData = JSON.parse(localStorage.getItem('user') || '{}');
     if (userData.userType === 'agent') {
-      router.push('/agent-dashboard');
+      router.push('/agent/dashboard');
     } else {
-      router.push('/dashboard');
+      router.push('/prospect/dashboard');
     }
   };
 

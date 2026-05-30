@@ -2,9 +2,13 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
-import { ArrowLeft, Camera, Video, X, Sparkles, Eye, MapPin, Bed, Bath, Check } from 'lucide-react';
+import { ArrowLeft, Camera, Video, X, Sparkles, Eye, MapPin, Bed, Bath, Check, Home, Plus, RefreshCw, MessageSquare, LogOut, UserCircle } from 'lucide-react';
+import { DashboardButton } from '@/components/agent/DashboardButton';
+import SidebarNav from '@/components/agent/SidebarNav';
+import BottomNav from '@/components/agent/BottomNav';
 
 interface MediaItem {
   id: string;
@@ -172,25 +176,51 @@ export default function AddProperty() {
       createdAt: new Date().toISOString()
     };
     localStorage.setItem('newProperty', JSON.stringify(completeData));
-    router.push('/add-property/success');
+    router.push('/agent/add-property/success');
   };
 
   const handleBack = () => {
     router.back();
   };
 
-  return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-[#008FAB] px-4 md:px-6 py-4 flex items-center gap-4">
-        <button onClick={handleBack} className="text-white hover:opacity-80 transition-opacity">
-          <ArrowLeft className="w-6 h-6" />
-        </button>
-        <h1 className="text-white text-xl font-bold">Add Property</h1>
-      </div>
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    router.push('/prospect/onboarding');
+  };
 
-      {/* Content */}
-      <div className="px-4 md:px-6 py-6 max-w-4xl mx-auto pb-24 md:pb-8">
+  return (
+    <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row">
+      <SidebarNav activePage="add" />
+
+      {/* Main Content */}
+      <div className="flex-1 md:ml-64">
+        {/* Mobile Header */}
+        <div className="md:hidden bg-[#008FAB] text-white top-0 z-10">
+          <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <UserCircle className="w-10 h-10 text-white" />
+              <h1 className="text-xl font-semibold truncate max-w-[200px]">Add Property</h1>
+            </div>
+            <DashboardButton
+              variant="outline"
+              onClick={handleLogout}
+              className="text-white hover:bg-white/20 px-3 py-1 rounded-full text-sm transition-colors border-none bg-transparent"
+            >
+              Logout
+            </DashboardButton>
+          </div>
+        </div>
+
+        {/* Desktop Header */}
+        <div className="hidden md:bg-[#008FAB] px-6 py-4 flex items-center gap-4">
+          <button onClick={handleBack} className="text-white hover:opacity-80 transition-opacity">
+            <ArrowLeft className="w-6 h-6" />
+          </button>
+          <h1 className="text-white text-xl font-bold">Add Property</h1>
+        </div>
+
+        {/* Content */}
+        <div className="px-4 md:px-6 py-6 max-w-4xl mx-auto pb-24 md:pb-8">
         <div className="space-y-8">
           {/* Camera/Video Section */}
           <div>
@@ -199,20 +229,13 @@ export default function AddProperty() {
             </label>
             
             {!isCameraOpen ? (
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-1 gap-4 mb-4">
                 <button
                   onClick={openCamera}
                   className="flex flex-col items-center justify-center gap-2 p-6 border-2 border-dashed border-gray-300 rounded-xl hover:border-[#008FAB] hover:bg-[#E8F5F7] transition-all"
                 >
                   <Camera className="w-8 h-8 text-gray-400" />
                   <span className="text-sm font-medium text-gray-600">Take Photo</span>
-                </button>
-                <button
-                  onClick={openCamera}
-                  className="flex flex-col items-center justify-center gap-2 p-6 border-2 border-dashed border-gray-300 rounded-xl hover:border-[#008FAB] hover:bg-[#E8F5F7] transition-all"
-                >
-                  <Video className="w-8 h-8 text-gray-400" />
-                  <span className="text-sm font-medium text-gray-600">Record Video (20s)</span>
                 </button>
               </div>
             ) : (
@@ -555,6 +578,9 @@ export default function AddProperty() {
           </div>
         </div>
       )}
+
+      <BottomNav activePage="add" />
+      </div>
     </div>
   );
 }

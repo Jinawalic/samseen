@@ -50,17 +50,17 @@ export default function Login() {
       if (existingUser) {
         const user = JSON.parse(existingUser);
         if (user.phone === formData.phone.replace(/\s/g, '')) {
-          router.push('/dashboard');
+          router.push('/prospect/dashboard');
           return;
         }
       }
       // If no user found, redirect to register
-      router.push('/register');
+      router.push('/prospect/register');
     }
   };
 
   const handleBack = () => {
-    router.push('/onboarding');
+    router.push('/prospect/onboarding');
   };
 
   return (
@@ -124,7 +124,7 @@ export default function Login() {
         <p className="text-center text-gray-500 text-xs mt-6">
           Don't have an account?{' '}
           <button
-            onClick={() => router.push('/register')}
+            onClick={() => router.push('/prospect/register')}
             className="text-[#008FAB] hover:underline font-medium"
           >
             Register

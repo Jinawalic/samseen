@@ -15,15 +15,15 @@ export default function Onboarding() {
   };
 
   const handleLookingForPlace = () => {
-    router.push('/register?type=user');
+    router.push('/prospect/register?type=user');
   };
 
   const handleAgent = () => {
-    router.push('/register?type=agent');
+    router.push('/prospect/register?type=agent');
   };
 
   const handleLogin = () => {
-    router.push('/login');
+    router.push('/prospect/login');
   };
 
   return (

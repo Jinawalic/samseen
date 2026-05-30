@@ -9,14 +9,14 @@ import {
   Grid, Map, ArrowRight, Menu
 } from 'lucide-react';
 
-import { mockProperties, Property, formatPrice } from '@/components/dashboard/mockData';
-import { PropertyDetail } from '@/components/dashboard/PropertyDetail';
-import { SimulatedMap } from '@/components/dashboard/SimulatedMap';
-import { ProfileView } from '@/components/dashboard/ProfileView';
-import { FavoritesView } from '@/components/dashboard/FavoritesView';
-import { DashboardButton } from '@/components/dashboard/DashboardButton';
-import { SearchView } from '@/components/dashboard/SearchView';
-import { HomeView } from '@/components/dashboard/HomeView';
+import { mockProperties, Property, formatPrice } from '@/components/prospect/mockData';
+import { PropertyDetail } from '@/components/prospect/PropertyDetail';
+import { SimulatedMap } from '@/components/prospect/SimulatedMap';
+import { ProfileView } from '@/components/prospect/ProfileView';
+import { FavoritesView } from '@/components/prospect/FavoritesView';
+import { DashboardButton } from '@/components/agent/DashboardButton';
+import { SearchView } from '@/components/prospect/SearchView';
+import { HomeView } from '@/components/prospect/HomeView';
 
 export default function Dashboard() {
   const router = useRouter();
@@ -99,7 +99,7 @@ export default function Dashboard() {
 
   const handleLogout = () => {
     localStorage.removeItem('user');
-    router.push('/onboarding');
+    router.push('/prospect/onboarding');
   };
 
   const handleScheduleViewing = (property: Property) => {

@@ -2,7 +2,7 @@
 
 import { Property, formatPrice } from './mockData';
 import { PropertyCard } from './PropertyCard';
-import { DashboardButton } from './DashboardButton';
+import { DashboardButton } from '../agent/DashboardButton';
 import { Map, MapPin, ChevronDown, X as XIcon } from 'lucide-react';
 
 interface SearchViewProps {
