@@ -109,6 +109,7 @@ export default function AgentDashboard() {
           <DashboardButton
             variant="sidebar"
             active={false}
+            onClick={() => router.push('/add-property')}
             icon={<Plus className="w-5 h-5 text-gray-400" />}
           >
             Add Property
@@ -249,6 +250,7 @@ export default function AgentDashboard() {
           <DashboardButton
             variant="bottomNav"
             active={false}
+            onClick={() => router.push('/add-property')}
             icon={<Plus className="w-5.5 h-5.5" />}
           >
             Add

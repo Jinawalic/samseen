@@ -84,7 +84,7 @@ function RegisterContent() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#008FAB]/10 to-[#008FAB]/5 flex items-center justify-center p-4">
       <div className="max-w-md w-full">
-        <div className="bg-white rounded-2xl shadow-2xl p-4 md:p-12">
+        <div className="bg-white rounded-2xl p-4 md:p-12">
           {/* Header */}
           <div className="text-center">
             <div className="mb-4 flex justify-center">
