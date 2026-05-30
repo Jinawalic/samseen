@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
-import { ArrowLeft, Camera, Video, X, Sparkles, Eye, MapPin, Bed, Bath, Check, Home, Plus, RefreshCw, MessageSquare, LogOut, UserCircle } from 'lucide-react';
+import { ArrowLeft, Camera, Video, X, Sparkles, Eye, MapPin, Bed, Bath, Check, Home, Plus, RefreshCw, MessageSquare, LogOut, UserCircle, ArrowUpLeftFromSquareIcon, LucideArrowUpLeft } from 'lucide-react';
 import { DashboardButton } from '@/components/agent/DashboardButton';
 import SidebarNav from '@/components/agent/SidebarNav';
 import BottomNav from '@/components/agent/BottomNav';
@@ -198,8 +198,8 @@ export default function AddProperty() {
         <div className="md:hidden bg-[#008FAB] text-white top-0 z-10">
           <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <UserCircle className="w-10 h-10 text-white" />
-              <h1 className="text-xl font-semibold truncate max-w-[200px]">Add Property</h1>
+              <ArrowLeft className="w-5 h-5 text-white" />
+              <h1 className="text-sm font-semibold truncate max-w-[200px]">Add Property</h1>
             </div>
             <DashboardButton
               variant="outline"

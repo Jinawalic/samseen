@@ -33,7 +33,7 @@ export default function AddPropertySuccess() {
           </div>
 
           {/* Success Message */}
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">
+          <h1 className="text-xl font-bold text-gray-900 mb-2">
             Property Added Successfully!
           </h1>
           <p className="text-gray-600 text-sm mb-8">
